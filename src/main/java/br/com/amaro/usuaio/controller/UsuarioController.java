@@ -42,7 +42,6 @@ public class UsuarioController {
                 List<String> localizacao = LocalizacaoGenerator.consultaLocalizacao(usuarioDTO.getEndereco());
                 usuarioDTO.setLatitude(localizacao.get(0));
                 usuarioDTO.setLongitude(localizacao.get(1));
-                usuarioDTO.setClienteId(UUID.randomUUID().toString());
                 return ResponseEntity.status(201).body(UsuarioMapper.entityToDto(usuarioRepository.save(UsuarioMapper.dtoToEntity(usuarioDTO))));
             }
         }catch (Exception e){
