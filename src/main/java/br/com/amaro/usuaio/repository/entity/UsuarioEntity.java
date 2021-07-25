@@ -37,4 +37,10 @@ public class UsuarioEntity {
 
     @NotNull
     private String tipo;
+
+    @NotNull
+    private String latitude;
+
+    @NotNull
+    private String longitude;
 }

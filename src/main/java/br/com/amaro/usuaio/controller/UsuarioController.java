@@ -1,6 +1,7 @@
 package br.com.amaro.usuaio.controller;
 
 import br.com.amaro.usuaio.controller.dto.UsuarioDTO;
+import br.com.amaro.usuaio.controller.util.LocalizacaoGenerator;
 import br.com.amaro.usuaio.controller.util.UsuarioMapper;
 import br.com.amaro.usuaio.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -36,6 +39,9 @@ public class UsuarioController {
             if(usuarioRepository.existsByNuCpfCnpj(usuarioDTO.getNuCpfCnpj())){
                 return ResponseEntity.status(400).body("Cliente já cadastrado!");
             } else{
+                List<String> localizacao = LocalizacaoGenerator.consultaLocalizacao(usuarioDTO.getEndereco());
+                usuarioDTO.setLatitude(localizacao.get(0));
+                usuarioDTO.setLongitude(localizacao.get(1));
                 usuarioDTO.setClienteId(UUID.randomUUID().toString());
                 return ResponseEntity.status(201).body(UsuarioMapper.entityToDto(usuarioRepository.save(UsuarioMapper.dtoToEntity(usuarioDTO))));
             }
@@ -50,6 +56,9 @@ public class UsuarioController {
         try{
             usuarioDTO.setClienteId(clienteId);
             if(usuarioRepository.existsByClienteId(usuarioDTO.getClienteId())){
+                List<String> localizacao = LocalizacaoGenerator.consultaLocalizacao(usuarioDTO.getEndereco());
+                usuarioDTO.setLatitude(localizacao.get(0));
+                usuarioDTO.setLongitude(localizacao.get(1));
                 return ResponseEntity.ok().body(UsuarioMapper.entityToDto(usuarioRepository.save(UsuarioMapper.dtoToEntity(usuarioDTO))));
             } else{
                 return ResponseEntity.status(400).body("Usuário não encontrado!");

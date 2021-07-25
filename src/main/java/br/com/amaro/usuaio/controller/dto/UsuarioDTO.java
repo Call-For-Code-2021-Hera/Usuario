@@ -32,4 +32,10 @@ public class UsuarioDTO {
     @JsonProperty("tipo")
     private String tipo;
 
+    @JsonProperty("latitude")
+    private String latitude;
+
+    @JsonProperty("longitude")
+    private String longitude;
+
 }

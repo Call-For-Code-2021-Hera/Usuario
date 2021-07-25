@@ -12,6 +12,8 @@ public class UsuarioMapper {
                 .telefone(usuarioEntity.getTelefone())
                 .nuCpfCnpj(usuarioEntity.getNuCpfCnpj())
                 .tipo(usuarioEntity.getTipo())
+                .latitude(usuarioEntity.getLatitude())
+                .longitude(usuarioEntity.getLongitude())
                 .build();
     }
     public static UsuarioEntity dtoToEntity(UsuarioDTO usuarioDTO){
@@ -22,6 +24,8 @@ public class UsuarioMapper {
                 .telefone(usuarioDTO.getTelefone())
                 .nuCpfCnpj(usuarioDTO.getNuCpfCnpj())
                 .tipo(usuarioDTO.getTipo())
+                .latitude(usuarioDTO.getLatitude())
+                .longitude(usuarioDTO.getLongitude())
                 .build();
     }
 }
