@@ -20,6 +20,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/{clienteId}")
     public ResponseEntity<?> consultaCliente(@PathVariable(value = "clienteId")String clienteId){
         try{
@@ -33,6 +34,7 @@ public class UsuarioController {
         }
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/cadastrar")
     public ResponseEntity<?> cadastraCliente(@RequestBody UsuarioDTO usuarioDTO){
         try{
@@ -49,6 +51,7 @@ public class UsuarioController {
         }
     }
 
+    @CrossOrigin(origins = "*")
     @PatchMapping("/{clienteId}")
     public ResponseEntity<?> atualizaCliente(@PathVariable(value = "clienteId")String clienteId,
                                              @RequestBody UsuarioDTO usuarioDTO){
@@ -67,6 +70,7 @@ public class UsuarioController {
         }
     }
 
+    @CrossOrigin(origins = "*")
     @DeleteMapping("/{clienteId}")
     public ResponseEntity<?> deletaCliente(@PathVariable(value = "clienteId") String clienteId){
         try{
